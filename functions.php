@@ -431,13 +431,14 @@ function create_post_type_html5()
             'title',
             'editor',
             'excerpt',
-            'thumbnail'
+            'thumbnail',
+            'custom-fields'
         ), // Go to Dashboard Custom HTML5 Blank post for supports
         'can_export' => true, // Allows export in Tools > Export
-        'taxonomies' => array(
-            'post_tag',
-            'category'
-        ) // Add Category and Post Tags support
+        // 'taxonomies' => array(
+        //     'post_tag',
+        //     'category'
+        // ) // NO Add Category and Post Tags support
     ));
 }
 
@@ -456,5 +457,108 @@ function html5_shortcode_demo_2($atts, $content = null) // Demo Heading H2 short
 {
     return '<h2>' . $content . '</h2>';
 }
+
+/*------------------------------------*\
+    Registers New Taxonomy
+\*------------------------------------*/
+
+// hook into the init action and call create_article_taxonomies when it fires
+add_action( 'init', 'create_article_taxonomies', 0 );
+
+// create two taxonomies, marques and famille for the post type "book"
+function create_article_taxonomies() {
+    // Add new taxonomy 'Marque', make it hierarchical (like categories)
+    $labels = array(
+        'name'              => _x( 'Marques', 'taxonomy general name' ),
+        'singular_name'     => _x( 'Marque', 'taxonomy singular name' ),
+        'search_items'      => __( 'Search Marques' ),
+        'all_items'         => __( 'All Marques' ),
+        'parent_item'       => __( 'Parent Marque' ),
+        'parent_item_colon' => __( 'Parent Marque:' ),
+        'edit_item'         => __( 'Edit Marque' ),
+        'update_item'       => __( 'Update Marque' ),
+        'add_new_item'      => __( 'Add New Marque' ),
+        'new_item_name'     => __( 'New Marque Name' ),
+        'menu_name'         => __( 'Marque' ),
+    );
+
+    $args = array(
+        'hierarchical'      => true,
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array( 'slug' => 'marque' ),
+    );
+
+    register_taxonomy( 'marque', array( 'html5-blank' ), $args );
+
+    // Add new taxonomy 'Famille',
+    $labels = array(
+        'name'                       => _x( 'Familles', 'taxonomy general name' ),
+        'singular_name'              => _x( 'Famille', 'taxonomy singular name' ),
+        'search_items'               => __( 'Search Familles' ),
+        'popular_items'              => __( 'Popular Familles' ),
+        'all_items'                  => __( 'All Familles' ),
+        'parent_item'                => null,
+        'parent_item_colon'          => null,
+        'edit_item'                  => __( 'Edit Famille' ),
+        'update_item'                => __( 'Update Famille' ),
+        'add_new_item'               => __( 'Add New Famille' ),
+        'new_item_name'              => __( 'New Famille Name' ),
+        'separate_items_with_commas' => __( 'Separate familles with commas' ),
+        'add_or_remove_items'        => __( 'Add or remove familles' ),
+        'choose_from_most_used'      => __( 'Choose from the most used familles' ),
+        'not_found'                  => __( 'No familles found.' ),
+        'menu_name'                  => __( 'Familles' ),
+    );
+
+    $args = array(
+        'hierarchical'      => true,
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array( 'slug' => 'famille' ),
+
+    );
+
+    register_taxonomy( 'famille', 'html5-blank', $args );
+
+    // Add new taxonomy 'Categorie',
+    $labels = array(
+        'name'                       => _x( 'Cat&eacute;gories', 'taxonomy general name' ),
+        'singular_name'              => _x( 'Cat&eacute;gorie', 'taxonomy singular name' ),
+        'search_items'               => __( 'Search Cat&eacute;gories' ),
+        'popular_items'              => __( 'Popular Cat&eacute;gories' ),
+        'all_items'                  => __( 'All Cat&eacute;gories' ),
+        'parent_item'                => null,
+        'parent_item_colon'          => null,
+        'edit_item'                  => __( 'Edit Cat&eacute;gorie' ),
+        'update_item'                => __( 'Update Cat&eacute;gorie' ),
+        'add_new_item'               => __( 'Add New Cat&eacute;gorie' ),
+        'new_item_name'              => __( 'New Cat&eacute;gorie Name' ),
+        'separate_items_with_commas' => __( 'Separate cat&eacute;gories with commas' ),
+        'add_or_remove_items'        => __( 'Add or remove cat&eacute;gories' ),
+        'choose_from_most_used'      => __( 'Choose from the most used cat&eacute;gories' ),
+        'not_found'                  => __( 'No cat&eacute;gories found.' ),
+        'menu_name'                  => __( 'Cat&eacute;gories' ),
+    );
+
+    $args = array(
+        'hierarchical'      => true,
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array( 'slug' => 'cat&eacute;gorie' ),
+
+    );
+
+    register_taxonomy( 'cat&eacute;gorie', 'html5-blank', $args );
+
+}
+
+
 
 ?>
