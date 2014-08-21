@@ -435,10 +435,10 @@ function create_post_type_html5()
             'custom-fields'
         ), // Go to Dashboard Custom HTML5 Blank post for supports
         'can_export' => true, // Allows export in Tools > Export
-        // 'taxonomies' => array(
-        //     'post_tag',
-        //     'category'
-        // ) // NO Add Category and Post Tags support
+        'taxonomies' => array(
+            // 'post_tag',
+            'category'
+        ) // Add Category support
     ));
 }
 
@@ -525,40 +525,44 @@ function create_article_taxonomies() {
 
     register_taxonomy( 'famille', 'html5-blank', $args );
 
-    // Add new taxonomy 'Categorie',
-    $labels = array(
-        'name'                       => _x( 'Cat&eacute;gories', 'taxonomy general name' ),
-        'singular_name'              => _x( 'Cat&eacute;gorie', 'taxonomy singular name' ),
-        'search_items'               => __( 'Search Cat&eacute;gories' ),
-        'popular_items'              => __( 'Popular Cat&eacute;gories' ),
-        'all_items'                  => __( 'All Cat&eacute;gories' ),
-        'parent_item'                => null,
-        'parent_item_colon'          => null,
-        'edit_item'                  => __( 'Edit Cat&eacute;gorie' ),
-        'update_item'                => __( 'Update Cat&eacute;gorie' ),
-        'add_new_item'               => __( 'Add New Cat&eacute;gorie' ),
-        'new_item_name'              => __( 'New Cat&eacute;gorie Name' ),
-        'separate_items_with_commas' => __( 'Separate cat&eacute;gories with commas' ),
-        'add_or_remove_items'        => __( 'Add or remove cat&eacute;gories' ),
-        'choose_from_most_used'      => __( 'Choose from the most used cat&eacute;gories' ),
-        'not_found'                  => __( 'No cat&eacute;gories found.' ),
-        'menu_name'                  => __( 'Cat&eacute;gories' ),
-    );
-
-    $args = array(
-        'hierarchical'      => true,
-        'labels'            => $labels,
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'query_var'         => true,
-        'rewrite'           => array( 'slug' => 'cat&eacute;gorie' ),
-
-    );
-
-    register_taxonomy( 'cat&eacute;gorie', 'html5-blank', $args );
-
 }
 
+/*------------------------------------*\
+Get terms for all custom taxonomies
+\*------------------------------------*/
+
+// get taxonomies terms links
+function custom_taxonomies_terms_links(){
+  // get post by post id
+  $post = get_post( $post->ID );
+
+  // get post type by post
+  $post_type = $post->post_type;
+
+  // get post type taxonomies
+  $taxonomies = get_object_taxonomies( $post_type, 'objects' );
+
+  $out = array();
+  foreach ( $taxonomies as $taxonomy_slug => $taxonomy ){
+
+    // get the terms related to post
+    $terms = get_the_terms( $post->ID, $taxonomy_slug );
+
+    if ( !empty( $terms ) ) {
+      $out[] = "<h2>" . $taxonomy->label . "</h2>\n<ul>";
+      foreach ( $terms as $term ) {
+        $out[] =
+          '  <li><a href="'
+        .    get_term_link( $term->slug, $taxonomy_slug ) .'">'
+        .    $term->name
+        . "</a></li>\n";
+      }
+      $out[] = "</ul>\n";
+    }
+  }
+
+  return implode('', $out );
+}
 
 
 ?>
