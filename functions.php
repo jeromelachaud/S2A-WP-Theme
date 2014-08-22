@@ -120,6 +120,7 @@ function html5blank_styles()
 
     wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
     wp_enqueue_style('html5blank'); // Enqueue it!
+
 }
 
 // Register HTML5 Blank Navigation
@@ -411,18 +412,18 @@ function create_post_type_html5()
     register_post_type('html5-blank', // Register Custom Post Type
         array(
         'labels' => array(
-            'name' => __('HTML5 Blank Custom Post', 'html5blank'), // Rename these to suit
-            'singular_name' => __('HTML5 Blank Custom Post', 'html5blank'),
+            'name' => __('Article', 'html5blank'), // Rename these to suit
+            'singular_name' => __('Article', 'html5blank'),
             'add_new' => __('Add New', 'html5blank'),
-            'add_new_item' => __('Add New HTML5 Blank Custom Post', 'html5blank'),
+            'add_new_item' => __('Add New Article', 'html5blank'),
             'edit' => __('Edit', 'html5blank'),
-            'edit_item' => __('Edit HTML5 Blank Custom Post', 'html5blank'),
-            'new_item' => __('New HTML5 Blank Custom Post', 'html5blank'),
-            'view' => __('View HTML5 Blank Custom Post', 'html5blank'),
-            'view_item' => __('View HTML5 Blank Custom Post', 'html5blank'),
-            'search_items' => __('Search HTML5 Blank Custom Post', 'html5blank'),
-            'not_found' => __('No HTML5 Blank Custom Posts found', 'html5blank'),
-            'not_found_in_trash' => __('No HTML5 Blank Custom Posts found in Trash', 'html5blank')
+            'edit_item' => __('Edit Article', 'html5blank'),
+            'new_item' => __('New Article', 'html5blank'),
+            'view' => __('View Article', 'html5blank'),
+            'view_item' => __('View Article', 'html5blank'),
+            'search_items' => __('Search Article', 'html5blank'),
+            'not_found' => __('No Articles found', 'html5blank'),
+            'not_found_in_trash' => __('No Articles found in Trash', 'html5blank')
         ),
         'public' => true,
         'hierarchical' => true, // Allows your posts to behave like Hierarchy Pages
@@ -438,7 +439,7 @@ function create_post_type_html5()
         'taxonomies' => array(
             // 'post_tag',
             'category'
-        ) // Add Category support
+        ) // Add Category and Post Tags support
     ));
 }
 
