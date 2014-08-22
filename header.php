@@ -22,7 +22,7 @@
         });
         </script>
 
-	</head>
+ 	</head>
 	<body <?php body_class(); ?>>
 
 		<!-- wrapper -->
