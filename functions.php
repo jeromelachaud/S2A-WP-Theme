@@ -100,7 +100,7 @@ function html5blank_header_scripts()
 
         wp_register_script('html5blankscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '1.0.0'); // Custom scripts
         wp_enqueue_script('html5blankscripts'); // Enqueue it!
-    }
+
 }
 
 // Load HTML5 Blank conditional scripts
@@ -120,6 +120,7 @@ function html5blank_styles()
 
     wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
     wp_enqueue_style('html5blank'); // Enqueue it!
+
 
 }
 
@@ -564,6 +565,21 @@ function custom_taxonomies_terms_links(){
 
   return implode('', $out );
 }
+
+/*--------------------------------------------------*\
+Add custom post type to regular Categories Archives
+\*--------------------------------------------------*/
+function add_custom_types_to_tax( $query ) {
+if( is_category() || is_tag() && empty( $query->query_vars['suppress_filters'] ) ) {
+
+// Get all your post types
+$post_types = get_post_types();
+
+$query->set( 'post_type', $post_types );
+return $query;
+}
+}
+add_filter( 'pre_get_posts', 'add_custom_types_to_tax' );
 
 
 ?>
