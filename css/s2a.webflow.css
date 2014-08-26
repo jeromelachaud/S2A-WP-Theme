@@ -48,7 +48,7 @@ p {
   font-family:'Droid Sans', sans-serif;
   font-size: 17px;
 }
-.button-produit {
+.button-article {
   display: inline-block;
   width: 97%;
   height: 100%;
@@ -64,7 +64,7 @@ p {
   text-align: center;
   text-decoration: none;
 }
-.button-produit.button-link {
+.button-article.button-link {
   width: auto;
   margin-top: 5px;
   margin-bottom: 15px;
@@ -169,7 +169,7 @@ p {
   position: fixed;
   width: 25%;
 }
-.produit-image {
+.article-image {
   overflow-x: visible;
   overflow-y: visible;
   width: auto;
@@ -183,7 +183,7 @@ p {
   padding: 10px;
   border: 1px solid #ccc;
 }
-.block-product {
+.block-article {
   margin-top: 20px;
 }
 .article-code {
@@ -216,7 +216,7 @@ p {
   font-family:'Droid Sans', sans-serif;
   font-size: 20px;
 }
-.produit-nom-liiste {
+.article-nom-liste {
   margin-bottom: 10px;
   font-family:'Droid Sans', sans-serif;
   font-size: 22px;
@@ -229,7 +229,7 @@ p {
   left: 4px;
 }
 @media (max-width: 991px) {
-  .button-produit {
+  .button-article {
     margin-left: 0px;
   }
   .content-block {
@@ -238,7 +238,7 @@ p {
   .image-example {
     background-image: url('../images/example-bg.png');
   }
-  .produit-image {
+  .article-image {
     width: auto;
     height: 200px;
     margin-right: 0px;

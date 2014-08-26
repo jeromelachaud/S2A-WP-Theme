@@ -33,23 +33,23 @@ if (function_exists('add_theme_support'))
     add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
 
     // Add Support for Custom Backgrounds - Uncomment below if you're going to use
-    /*add_theme_support('custom-background', array(
-	'default-color' => 'FFF',
-	'default-image' => get_template_directory_uri() . '/img/bg.jpg'
-    ));*/
+    // add_theme_support('custom-background', array(
+	// 'default-color' => 'FFF',
+	// 'default-image' => get_template_directory_uri() . '/img/bg.jpg'
+    // ));
 
     // Add Support for Custom Header - Uncomment below if you're going to use
-    /*add_theme_support('custom-header', array(
-	'default-image'			=> get_template_directory_uri() . '/img/headers/default.jpg',
+    add_theme_support('custom-header', array(
+	'default-image'			=> get_template_directory_uri() . '/img/headers/example-bg-header.jpg',
 	'header-text'			=> false,
 	'default-text-color'		=> '000',
 	'width'				=> 1000,
-	'height'			=> 198,
+	'height'			=> 250,
 	'random-default'		=> false,
 	'wp-head-callback'		=> $wphead_cb,
 	'admin-head-callback'		=> $adminhead_cb,
 	'admin-preview-callback'	=> $adminpreview_cb
-    ));*/
+    ));
 
     // Enables post and comment RSS feed links to head
     add_theme_support('automatic-feed-links');
@@ -80,7 +80,7 @@ function html5blank_nav()
 		'after'           => '',
 		'link_before'     => '',
 		'link_after'      => '',
-		'items_wrap'      => '<ul>%3$s</ul>',
+		'items_wrap'      => '%3$s',
 		'depth'           => 0,
 		'walker'          => ''
 		)
@@ -97,6 +97,9 @@ function html5blank_header_scripts()
 
         wp_register_script('modernizr', get_template_directory_uri() . '/js/lib/modernizr-2.7.1.min.js', array(), '2.7.1'); // Modernizr
         wp_enqueue_script('modernizr'); // Enqueue it!
+
+        wp_register_script('owl.carousel.min', get_template_directory_uri() . '/js/owl.carousel.min.js', array('jquery'), '1.0.0'); // Custom scripts
+        wp_enqueue_script('owl.carousel.min'); // Enqueue it!
 
         wp_register_script('html5blankscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '1.0.0'); // Custom scripts
         wp_enqueue_script('html5blankscripts'); // Enqueue it!
@@ -118,17 +121,26 @@ function html5blank_conditional_scripts()
 // Load HTML5 Blank styles
 function html5blank_styles()
 {
-    wp_register_style('normalize', get_template_directory_uri() . '/normalize.css', array(), '1.0', 'all');
+    wp_register_style('normalize', get_template_directory_uri() . '/normalize.min.css', array(), '1.0', 'all');
     wp_enqueue_style('normalize'); // Enqueue it!
 
-    wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
-    wp_enqueue_style('html5blank'); // Enqueue it!
+    wp_register_style('owl.carousel', get_template_directory_uri() . '/css/owl.carousel.css', array(), '1.0', 'all');
+    wp_enqueue_style('owl.carousel'); // Enqueue it!
+
+    wp_register_style('owl.theme', get_template_directory_uri() . '/css/owl.theme.css', array(), '1.0', 'all');
+    wp_enqueue_style('owl.theme'); // Enqueue it!
+
+    wp_register_style('owl.transitions', get_template_directory_uri() . '/css/owl.transitions.css', array(), '1.0', 'all');
+    wp_enqueue_style('owl.transitions'); // Enqueue it!
 
     wp_register_style('webflow', get_template_directory_uri() . '/css/webflow.css', array(), '1.0', 'all');
     wp_enqueue_style('webflow'); // Enqueue it!
 
     wp_register_style('s2a.webflow', get_template_directory_uri() . '/css/s2a.webflow.css', array(), '1.0', 'all');
     wp_enqueue_style('s2a.webflow'); // Enqueue it!
+
+    wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
+    wp_enqueue_style('html5blank'); // Enqueue it!
 
 }
 
@@ -386,8 +398,8 @@ add_filter('body_class', 'add_slug_to_body_class'); // Add slug to body class (S
 add_filter('widget_text', 'do_shortcode'); // Allow shortcodes in Dynamic Sidebar
 add_filter('widget_text', 'shortcode_unautop'); // Remove <p> tags in Dynamic Sidebars (better!)
 add_filter('wp_nav_menu_args', 'my_wp_nav_menu_args'); // Remove surrounding <div> from WP Navigation
-// add_filter('nav_menu_css_class', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> injected classes (Commented out by default)
-// add_filter('nav_menu_item_id', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> injected ID (Commented out by default)
+//add_filter('nav_menu_css_class', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> injected classes (Commented out by default)
+add_filter('nav_menu_item_id', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> injected ID (Commented out by default)
 // add_filter('page_css_class', 'my_css_attributes_filter', 100, 1); // Remove Navigation <li> Page ID's (Commented out by default)
 add_filter('the_category', 'remove_category_rel_from_category_list'); // Remove invalid rel attribute
 add_filter('the_excerpt', 'shortcode_unautop'); // Remove auto <p> tags in Excerpt (Manual Excerpts only)
@@ -559,15 +571,53 @@ function custom_taxonomies_terms_links(){
     $terms = get_the_terms( $post->ID, $taxonomy_slug );
 
     if ( !empty( $terms ) ) {
-      $out[] = "<h2>" . $taxonomy->label . "</h2>\n<ul>";
+      $out[] = "<div class='article-details'>" . $taxonomy->label . ":";
       foreach ( $terms as $term ) {
         $out[] =
-          '  <li><a href="'
+          '  <a href="'
         .    get_term_link( $term->slug, $taxonomy_slug ) .'">'
         .    $term->name
-        . "</a></li>\n";
+        . "</a>\n";
       }
-      $out[] = "</ul>\n";
+      $out[] = "</div>\n";
+    }
+  }
+
+  return implode('', $out );
+}
+
+/*---------------------------------------------------*\
+Get terms for all custom taxonomies without tax. label
+MUST HAVE A BETTER WAY TO DO THIS! :-/
+\*---------------------------------------------------*/
+
+// get taxonomies terms links
+function custom_taxonomies_terms_links_wout_links(){
+  // get post by post id
+  $post = get_post( $post->ID );
+
+  // get post type by post
+  $post_type = $post->post_type;
+
+  // get post type taxonomies
+  $taxonomies = get_object_taxonomies( $post_type, 'objects' );
+
+  $out = array();
+  foreach ( $taxonomies as $taxonomy_slug => $taxonomy ){
+
+    // get the terms related to post
+    $terms = get_the_terms( $post->ID, $taxonomy_slug );
+
+    if ( !empty( $terms ) ) {
+      $out[] = "<div class='article-details'>";
+      foreach ( $terms as $term ) {
+        $out[] =
+          '  <a href="'
+        .    get_term_link( $term->slug, $taxonomy_slug ) .'">'
+        .    $term->name
+        . "</a>\n";
+      }
+      $out[] = "</div>\n";
     }
   }
 

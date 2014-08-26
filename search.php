@@ -1,19 +1,31 @@
 <?php get_header(); ?>
 
-	<main role="main">
-		<!-- section -->
-		<section>
+		<!-- Webflow Content Block -->
+		<div class="content-block">
 
-			<h1><?php echo sprintf( __( '%s Search Results for ', 'html5blank' ), $wp_query->found_posts ); echo get_search_query(); ?></h1>
+			<main role="main">
+				<!-- section -->
+				<section>
 
-			<?php get_template_part('loop'); ?>
+					<h1><?php echo sprintf( __( '%s Search Results for ', 'html5blank' ), $wp_query->found_posts ); echo get_search_query(); ?></h1>
 
-			<?php get_template_part('pagination'); ?>
+					<?php get_template_part('loop-article-liste'); ?>
 
-		</section>
-		<!-- /section -->
-	</main>
+					<?php get_template_part('pagination'); ?>
+
+				</section>
+				<!-- /section -->
+			</main>
+
+		</div>
+		<!-- / Webflow Content Block -->
+
+		<!-- Webflow Flooter -->
+		<div class="footer-section">
+			<?php get_footer(); ?>
+		</div>
+
+	<!-- /Webflow Righ Col -->
+	</div>
 
 <?php get_sidebar(); ?>
-
-<?php get_footer(); ?>
