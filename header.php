@@ -63,6 +63,12 @@
 			<!-- /Left Col -->
 				<!-- Webflow Right Col -->
 				<div class="w-col w-col-9 content-column">
+					<div class="w-clearfix">
+							<nav class="nav" role="navigation">
+								<?php html5blank_top_nav(); ?>
+							</nav>
+
+      			</div>
 
 					<!-- Top Image -->
 					<!-- <div class="image-example"></div> -->

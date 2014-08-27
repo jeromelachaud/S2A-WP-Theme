@@ -122,6 +122,13 @@ p {
   background-color: white;
   color: #ccc;
 }
+
+.nav-link.top-nav {
+  width: 25%;
+  float: left;
+  clear: none;
+}
+
 .image-example {
   height: 250px;
   background-image: url('../images/example-bg.png');

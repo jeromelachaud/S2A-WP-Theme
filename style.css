@@ -108,6 +108,33 @@ padding-top: 0;
 .nav {
 
 }
+.nav > ul {
+	padding-left: 0
+}
+
+.top-nav {
+	display: block;
+	width: 25%;
+	float: left;
+	clear: none;
+	padding-top: 21px;
+	padding-bottom: 21px;
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	font-family:'Droid Sans', sans-serif;
+	color: #a6a6a6;
+	font-size: 16px;
+	font-style: normal;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.top-nav:hover {
+  background-color: #ccc;
+  color: white;
+}
+
 
 .fixed-nav {
 	top:0;
@@ -116,8 +143,13 @@ padding-top: 0;
 	overflow-x:hidden;
 }
 
-.nav > li:first-child {	border-top:1px solid #ccc;}
-.nav > li > a:hover {color:#fff;}
+.nav > ul > li.nav-link:first-child {	border-top:1px solid #ccc;}
+
+.nav > ul > li.nav-link > a:hover,
+.nav > ul > li.top-nav > a:hover {
+ 	color:#fff;
+ }
+
 /* sidebar */
 .sidebar {
 
@@ -187,7 +219,9 @@ text-align: left;
     IMAGES
 \*------------------------------------*/
 
-
+.center {
+	text-align: center;
+}
 
 /*------------------------------------*\
 	TYPOGRAPHY
