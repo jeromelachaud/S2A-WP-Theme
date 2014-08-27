@@ -1,71 +1,96 @@
 <?php get_header(); ?>
 
-	<main role="main">
-	<!-- section -->
-	<section>
+			<!-- Webflow Content Block -->
+			<div class="content-block">
 
-	<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+				<main role="main">
 
-		<!-- article -->
-		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+				<?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
-			<!-- post thumbnail -->
-			<?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
-				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-					<?php the_post_thumbnail(); // Fullsize image for the single post ?>
-				</a>
-			<?php endif; ?>
-			<!-- /post thumbnail -->
+				<!-- section -->
+				<section>
+					<div class="w-row product-summary-row">
 
-			<!-- post title -->
-			<h1>
-				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
-			</h1>
-			<!-- /post title -->
 
-			<!-- post details -->
-			<span class="date">
-				<time datetime="<?php the_time('Y-m-d'); ?> <?php the_time('H:i'); ?>">
-					<?php the_date(); ?> <?php the_time(); ?>
-				</time>
-			</span>
-			<span class="author"><?php _e( 'Published by', 'html5blank' ); ?> <?php the_author_posts_link(); ?></span>
-			<span class="comments"><?php if (comments_open( get_the_ID() ) ) comments_popup_link( __( 'Leave your thoughts', 'html5blank' ), __( '1 Comment', 'html5blank' ), __( '% Comments', 'html5blank' )); ?></span>
-			<!-- /post details -->
+					<!-- article -->
+					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-			<?php the_content(); // Dynamic Content ?>
+						<!-- post title -->
+						<h1>
+							<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
+						</h1>
+						<!-- /post title -->
 
-			<?php the_tags( __( 'Tags: ', 'html5blank' ), ', ', '<br>'); // Separated by commas with a line break at the end ?>
+						<!-- Webflow product block -->
+						<div class="w-row block-article">
 
-			<p><?php _e( 'Categorised in: ', 'html5blank' ); the_category(', '); // Separated by commas ?></p>
 
-			<p><?php _e( 'This post was written by ', 'html5blank' ); the_author(); ?></p>
+							<!-- Webflow Product Block Left Col for Post Details and Content-->
+							<div class="w-col w-col-6">
 
-			<?php edit_post_link(); // Always handy to have Edit Post Links available ?>
+								<div class="article-designation">
+									<?php the_content(); // Dynamic Content ?>
+								</div>
 
-			<?php comments_template(); ?>
+								<div class="article-edit">
+									<?php edit_post_link(); // Always handy to have Edit Post Links available ?>
+								</div>
 
-		</article>
-		<!-- /article -->
+							<!-- / Webflow Product Block Left Col for Post Details and Content-->
+							</div>
 
-	<?php endwhile; ?>
+							<!-- Webflow Product Block Right Col for Image-->
+							<div class="w-col w-col-6 center">
 
-	<?php else: ?>
+								<!-- post thumbnail -->
+									<?php
+									if ( has_post_thumbnail() ) {
+										$large_image_url = wp_get_attachment_image_src( get_post_thumbnail_id(), 'large' );
+										echo '<a href="' . $large_image_url[0] . '" title="' . the_title_attribute( 'echo=0' ) . '">';
+										the_post_thumbnail('post-thumbnail', array( 'class'	=> "produit-image-fiche"));
+										echo '</a>';
+									}
+									?>
+								<!-- /post thumbnail -->
 
-		<!-- article -->
-		<article>
+							<!-- /Webflow Product Block Right Col for Image -->
+							</div>
 
-			<h1><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h1>
+						<!-- / Webflow product block -->
+						</div>
 
-		</article>
-		<!-- /article -->
+					</article>
+					<!-- /article -->
 
-	<?php endif; ?>
+				<?php endwhile; ?>
 
-	</section>
-	<!-- /section -->
-	</main>
+				<?php else: ?>
+
+					<!-- article -->
+					<article>
+
+						<h1><?php _e( 'Sorry, nothing to display.', 'html5blank' ); ?></h1>
+
+					</article>
+					<!-- /article -->
+
+				<?php endif; ?>
+
+				</div>
+				</section>
+				<!-- /section -->
+
+				</main>
+
+			</div>
+			<!-- / Webflow Content Block -->
+
+			<!-- Webflow Flooter -->
+			<div class="footer-section">
+				<?php get_footer(); ?>
+			</div>
+
+	<!-- /Webflow Righ Col -->
+	</div>
 
 <?php get_sidebar(); ?>
-
-<?php get_footer(); ?>
