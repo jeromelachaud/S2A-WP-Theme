@@ -5,11 +5,12 @@
 
 				<main role="main">
 
+				<?php if (have_posts()): while (have_posts()) : the_post(); ?>
+
 				<!-- section -->
 				<section>
 					<div class="w-row product-summary-row">
 
-				<?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
 					<!-- article -->
 					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -25,16 +26,6 @@
 
 							<!-- Webflow product block Left Col for Image-->
 							<div class="w-col w-col-6">
-
-								<!-- post thumbnail -->
-<!-- 								<?php if ( has_post_thumbnail()) : // Check if Thumbnail exists ?>
-									<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-										<?php // the_post_thumbnail(); // Fullsize image for the single post ?>
-										<?php the_post_thumbnail('post-thumbnail', array( 'class'	=> "produit-image-fiche")); ?>
-									</a>
-								<?php endif; ?>
- -->								<!-- /post thumbnail -->
-
 
 								<!-- post thumbnail -->
 									<?php
