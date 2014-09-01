@@ -610,44 +610,6 @@ function custom_taxonomies_terms_links(){
   return implode('', $out );
 }
 
-/*---------------------------------------------------*\
-Get terms for all custom taxonomies without tax. label
-MUST HAVE A BETTER WAY TO DO THIS! :-/
-\*---------------------------------------------------*/
-
-// get taxonomies terms links
-function custom_taxonomies_terms_links_wout_links(){
-  // get post by post id
-  $post = get_post( $post->ID );
-
-  // get post type by post
-  $post_type = $post->post_type;
-
-  // get post type taxonomies
-  $taxonomies = get_object_taxonomies( $post_type, 'objects' );
-
-  $out = array();
-  foreach ( $taxonomies as $taxonomy_slug => $taxonomy ){
-
-    // get the terms related to post
-    $terms = get_the_terms( $post->ID, $taxonomy_slug );
-
-    if ( !empty( $terms ) ) {
-      $out[] = "<div class='article-details'>";
-      foreach ( $terms as $term ) {
-        $out[] =
-          '  <a href="'
-        .    get_term_link( $term->slug, $taxonomy_slug ) .'">'
-        .    $term->name
-        . "</a>\n";
-      }
-      $out[] = "</div>\n";
-    }
-  }
-
-  return implode('', $out );
-}
-
 /*--------------------------------------------------*\
 Add custom post type to regular Categories Archives
 \*--------------------------------------------------*/

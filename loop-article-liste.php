@@ -23,7 +23,7 @@
 						<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>
 					</div>
 					<div>
-						<?php echo custom_taxonomies_terms_links_wout_links(); ?>
+						<?php echo custom_taxonomies_terms_links(); ?>
 					</div>
 					<!-- /post title & details -->
 
