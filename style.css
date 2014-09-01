@@ -190,6 +190,10 @@ a:hover.post-edit-link{
 	text-decoration: none;
 }
 
+.article-code {
+	font-weight:400;
+}
+
 
 /*------------------------------------*\
 	 FORM
