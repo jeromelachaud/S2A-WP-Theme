@@ -159,6 +159,10 @@ li.top-nav > a  {
 	text-transform: uppercase;
 }
 
+.top-nav:hover{
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
 /* sidebar */
 .sidebar {
 
