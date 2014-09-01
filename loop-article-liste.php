@@ -24,8 +24,7 @@
 					</div>
 					<div>
 						<p class="article-code">
-							<strong><em>Ref. :</em></strong>
-								<?php $values = get_post_custom_values("code"); echo $values[0]; ?>
+							Ref. : <?php $values = get_post_custom_values("code"); echo $values[0]; ?>
 						</p>
 					</div>
 					<div>

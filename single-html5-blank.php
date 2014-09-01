@@ -36,10 +36,7 @@
 										echo '</a>';
 									}
 									?>
-								<!-- /post thumbnai<p class="article-code">
-									<strong><em>Ref. :</em></strong>
-									<?php $values = get_post_custom_values("code"); echo $values[0]; ?>
-								</p>l -->
+								<!-- /post thumbnail> -->
 
 							<!-- /Webflow product block Left Col for Image-->
 							</div>
@@ -49,6 +46,11 @@
 
 								<!-- post details -->
 
+								<!-- post ref -->
+								<p class="article-code">
+									Ref. : <?php $values = get_post_custom_values("code"); echo $values[0]; ?>
+								</p>
+								<!-- /post ref -->
 								<div>
 									<?php echo custom_taxonomies_terms_links(); ?>
 								</div>
