@@ -194,9 +194,19 @@ a:hover.post-edit-link{
 	font-weight:400;
 }
 
+/*------------------------------------*\
+	 CONTACT FORM
+\*------------------------------------*/
+#vscf label {
+	font-size: 1.5em;
+}
+
+#vscf_send {
+	font-size: 1.5em;
+}
 
 /*------------------------------------*\
-	 FORM
+	 SEARCH FORM
 \*------------------------------------*/
 .w-form {
 	margin: 0;
