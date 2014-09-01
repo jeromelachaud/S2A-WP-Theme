@@ -170,9 +170,16 @@ padding-top: 0;
   font-family:'Droid Sans', sans-serif;
   font-size: 20px;
 }
+.article-nom-liste a:hover{
+	text-decoration: underline;
 
+}
 .article-details a {
 	font-weight: bold;
+}
+
+.article-details a:hover {
+	text-decoration: underline;
 }
 
 a.post-edit-link{

@@ -36,7 +36,10 @@
 										echo '</a>';
 									}
 									?>
-								<!-- /post thumbnail -->
+								<!-- /post thumbnai<p class="article-code">
+									<strong><em>Ref. :</em></strong>
+									<?php $values = get_post_custom_values("code"); echo $values[0]; ?>
+								</p>l -->
 
 							<!-- /Webflow product block Left Col for Image-->
 							</div>
@@ -45,10 +48,7 @@
 							<div class="w-col w-col-6 col2-left-margin">
 
 								<!-- post details -->
-								<p class="article-code">
-									<strong><em>Ref. :</em></strong>
-									<?php $values = get_post_custom_values("code"); echo $values[0]; ?>
-								</p>
+
 								<div>
 									<?php echo custom_taxonomies_terms_links(); ?>
 								</div>
