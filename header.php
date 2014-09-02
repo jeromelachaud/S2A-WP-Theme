@@ -64,6 +64,13 @@
 							</div>
 							<!-- /logo -->
 
+							<div class="logo-contact-details">
+								ZAC du Bois Moussay -
+								30 Rue Du Bois Moussay -
+								93240 Stains <br />
+								Tél :+ 33 (0) 1 48 40 44 04  - Fax :+ 33 (0) 1 48 40 51 51
+							</div>
+
 							<!-- sidebar -->
 							<?php get_sidebar(); ?>
 							<!-- /sidebar -->
