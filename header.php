@@ -108,4 +108,13 @@
 					 	<div class="item">
 					 		<img src="<?php echo get_template_directory_uri(); ?>/images/header/images-header-3.jpg" alt="S2A">
 					 	</div>
+						<div class="item">
+							<img src="<?php echo get_template_directory_uri(); ?>/images/header/images-header-4.jpg" alt="S2A">
+						</div>
+					 	<div class="item">
+					 		<img src="<?php echo get_template_directory_uri(); ?>/images/header/images-header-5.jpg" alt="S2A">
+					 	</div>
+					 	<div class="item">
+					 		<img src="<?php echo get_template_directory_uri(); ?>/images/header/images-header-6.jpg" alt="S2A">
+					 	</div>
 					</div>
